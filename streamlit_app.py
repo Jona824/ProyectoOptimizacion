@@ -2,9 +2,9 @@ import pandas as pd
 import streamlit as st
 
 from utilidades.graficos import crear_figura_pareto
-from modelo import calcular_k0, evaluar_hds
-from optimizacion import calcular_malla_y_pareto
-from sensibilidad import calcular_sensibilidad
+from utilidades.modelo import calcular_k0, evaluar_hds
+from utilidades.optimizacion import calcular_malla_y_pareto
+from utilidades.sensibilidad import calcular_sensibilidad
 
 st.set_page_config(
     page_title="Simulación y Optimización de HDS",
@@ -39,7 +39,7 @@ with st.sidebar:
     st.header("Parámetros del modelo")
     m_dot = st.number_input("Flujo másico $ṁ$ ($kg/h$)", 90000.0, 110000.0, 100000.0, 1000.0)
     s_in = st.number_input("Azufre alimentación $S_{in}$ ($ppm$)", 450.0, 550.0, 500.0, 5.0)
-    cp = st.number_input("Capacidad calorífica $Cp_{}$ ($kJ/(kg·K)$)", 2.25, 2.75, 2.50, 0.05)
+    cp = st.number_input("Capacidad calorífica $Cp$ ($kJ/(kg·K)$)", 2.25, 2.75, 2.50, 0.05)
     ea = st.number_input("Energía de activación $Ea$ ($J/mol$)", 72000.0, 88000.0, 80000.0, 500.0)
     tau = st.number_input("Tiempo espacial τ ($h$)", 0.45, 0.55, 0.50, 0.01)
 
