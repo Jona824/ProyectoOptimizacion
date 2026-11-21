@@ -2,6 +2,7 @@
 primaryColor = "#ff4b4b"
 backgroundColor = "#f8fafc"
 secondaryBackgroundColor = "#1e293b"
+secondaryBackgroundtextColor = "#f8fafc"
 textColor = "#0f172a"
 font = "sans serif"
 
