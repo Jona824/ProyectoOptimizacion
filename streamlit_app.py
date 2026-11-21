@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from graficos import crear_figura_pareto
+from utilidades.graficos import crear_figura_pareto
 from modelo import calcular_k0, evaluar_hds
 from optimizacion import calcular_malla_y_pareto
 from sensibilidad import calcular_sensibilidad
