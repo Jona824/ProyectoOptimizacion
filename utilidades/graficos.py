@@ -74,12 +74,7 @@ def crear_figura_pareto(df_grid, df_pareto, knee_point):
     )
 
     fig.update_layout(
-        title=dict(
-            text="Optimización Multiobjetivo",
-            x=0.5,
-            xanchor="center",
-            xref="paper",
-        )
+        title="Optimización Multiobjetivo",
         xaxis_title="Carga Térmica Q<sub>horno</sub> (kW)",
         yaxis_title="Conversión X<sub>s</sub> (%)",
         font=dict(color="black", size=13),
