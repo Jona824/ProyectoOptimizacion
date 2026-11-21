@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from modelo import EA_CALIB, TAU_CALIB, evaluar_hds
+from utilidades.modelo import EA_CALIB, TAU_CALIB, evaluar_hds
 
 
 def calcular_malla_y_pareto(
