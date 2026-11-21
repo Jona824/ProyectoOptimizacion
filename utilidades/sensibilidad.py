@@ -1,4 +1,4 @@
-Python
+
 import pandas as pd
 
 from modelo import calcular_k0, evaluar_hds
