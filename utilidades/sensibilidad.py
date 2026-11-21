@@ -18,7 +18,7 @@ def calcular_sensibilidad(
     ]
     filas = []
     for nombre, clave, val_base in parametros:
-        for factor, etiqueta in [(0.90, "-10"), (1.10, "+10")]:
+        for factor, etiqueta in [(0.90, "-10%"), (1.10, "+10%")]:
             kwargs = {
                 "t_in": t_in_base,
                 "epsilon": eps_base,
@@ -46,12 +46,37 @@ def calcular_sensibilidad(
             filas.append(
                 {
                     "Parámetro": nombre,
-                    "Cambio (%)": etiqueta,
-                    "Q (kJ/h)": f"{res['Q_horno_kJ_h']:.4e}",
-                    "ΔQ (%)": f"{delta_q_pct:+.3f}",
-                    "S_out (ppm)": f"{res['Sout_ppm']:.3f}",
-                    "ΔS_out (%)": f"{delta_s_pct:+.1f}",
-                    "¿Factible?": bool(res["factible"]),
+                    "Cambio": etiqueta,
+                    "Q (kJ/h)": round(res["Q_horno_kJ_h"], 2),
+                    "Q (kW)": round(res["Q_horno_kW"], 2),
+                    "ΔQ (%)": round(delta_q_pct, 3),
+                    "S_out (ppm)": round(res["Sout_ppm"], 3),
+                    "ΔS_out (%)": round(delta_s_pct, 2),
+                    "Factible": "Sí" if res["factible"] else "No",
                 }
             )
+    return pd.DataFrame(filas)
+
+
+def explorar_sin(
+    t_in_base, eps_base, m_dot_base, cp_base, ea_base, k0_base, tau_base, valores_sin=None
+):
+    if valores_sin is None:
+        valores_sin = [450.0, 475.0, 500.0, 525.0, 550.0]
+
+    filas = []
+    for s_val in valores_sin:
+        res = evaluar_hds(
+            t_in_base, eps_base, m_dot_base, s_val, cp_base, ea_base, k0_base, tau_base
+        )
+        filas.append(
+            {
+                "S_in (ppm)": s_val,
+                "X_s (%)": round(res["Xs"] * 100.0, 3),
+                "S_out (ppm)": round(res["Sout_ppm"], 3),
+                "Q (kJ/h)": round(res["Q_horno_kJ_h"], 2),
+                "Q (kW)": round(res["Q_horno_kW"], 2),
+                "Factible": "Sí" if res["factible"] else "No",
+            }
+        )
     return pd.DataFrame(filas)
