@@ -1,7 +1,6 @@
-
 import pandas as pd
 
-from modelo import calcular_k0, evaluar_hds
+from utilidades.modelo import calcular_k0, evaluar_hds
 
 
 def calcular_sensibilidad(
